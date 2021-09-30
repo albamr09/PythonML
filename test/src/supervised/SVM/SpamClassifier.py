@@ -6,7 +6,7 @@ import numpy as np
 import scipy.io as io
 
 from pyml.supervised.SVM.SVM2 import SVMV2
-from pyml.supervised.SVM.utils import getVocabList, PorterStemmer
+from pyml.supervised.SVM.utils import PorterStemmer
 
 
 def processEmail(email_contents, verbose=True):
@@ -76,7 +76,16 @@ def emailFeatures(word_indices):
     
     return x
 
+def getVocabList():
+    """
+    Reads the fixed vocabulary list in vocab.txt and returns a cell array of the words
+    %   vocabList = GETVOCABLIST() reads the fixed vocabulary list in vocab.txt
+    %   and returns a cell array of the words in vocabList.
 
+    :return:
+    """
+    vocabList = np.genfromtxt(os.path.join('../../../data/', 'vocab.txt'), dtype=object)
+    return list(vocabList[:, 1].astype(str))
 
 """
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -91,7 +100,7 @@ def emailFeatures(word_indices):
 #---------------------------------------------------------------------------------------------------------------------------
 
 
-with open(os.path.join('../../../data', 'emailSample1.txt')) as fid:
+with open(os.path.join('../../../data/', 'emailSample1.txt')) as fid:
     file_contents = fid.read()
 
 word_indices  = processEmail(file_contents)

@@ -1,5 +1,4 @@
 import numpy as np
-from os.path import join
 from matplotlib import pyplot
 
 
@@ -62,17 +61,6 @@ def plotData(X, y, grid=False):
     pyplot.pcolormesh(X1, X2, vals, cmap='YlGnBu', alpha=0.25, edgecolors='None', lw=0)
     pyplot.grid(False)
 
-
-def getVocabList():
-    """
-    Reads the fixed vocabulary list in vocab.txt and returns a cell array of the words
-    %   vocabList = GETVOCABLIST() reads the fixed vocabulary list in vocab.txt
-    %   and returns a cell array of the words in vocabList.
-
-    :return:
-    """
-    vocabList = np.genfromtxt(join('../../../data/', 'vocab.txt'), dtype=object)
-    return list(vocabList[:, 1].astype(str))
 
 
 """
